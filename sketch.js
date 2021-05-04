@@ -5,6 +5,9 @@ const Bodies = Matter.Bodies;
 var engine, world;
 var box1, pig1;
 var backgroundImg,platform;
+var log6;
+var crow;
+
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -33,9 +36,21 @@ function setup(){
     box5 = new Box(810,160,70,70);
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
-
+    log6=new Log(700,160,70,PI/2);
     bird = new Bird(100,100);
+    crow=new Chain(bird.body,log6.body);
 
+ /*   var options={
+      bodyA:bird.body,
+      bodyB:log6.body,
+      length:100,
+      stiffness:1
+    }
+ 
+    var chain=Matter.Constraint.create(options)
+    World.add(world,chain);
+
+*/
 }
 
 function draw(){
@@ -58,7 +73,13 @@ function draw(){
     box5.display();
     log4.display();
     log5.display();
+    log6.display();
 
     bird.display();
     platform.display();
+    crow.display();
+
+   /* strokeWeight(7);
+   line(bird.body.position.x,bird.body.position.y,log6.body.position.x,log6.body.position.y);
+   */
 }
